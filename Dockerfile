@@ -1,14 +1,17 @@
-FROM rocker/r-ver:4.3.0  # Use an R base image
+# Use a valid R base image
+FROM rocker/r-ver:4.3.0
 
-# Install plumber
+# Install plumber package
 RUN R -e "install.packages('plumber')"
 
-# Copy API script into the container
+# Copy the API script into the container
 COPY api.R /app/api.R
+
+# Set the working directory
 WORKDIR /app
 
-# Expose port 8000
+# Expose the port your API will use
 EXPOSE 8000
 
-# Run the Plumber API
+# Start the Plumber API
 CMD ["R", "-e", "plumber::plumb('api.R')$run(host='0.0.0.0', port=8000)"]
