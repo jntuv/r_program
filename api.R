@@ -1,5 +1,5 @@
-# api.R
-#* @apiTitle Example Plumber API
+# Load plumber
+#* @apiTitle Example API
 
 #* Add two numbers
 #* @param a First number
@@ -8,5 +8,15 @@
 function(a, b) {
   a <- as.numeric(a)
   b <- as.numeric(b)
-  list(result = a + b)
+  return(list(result = a + b))
+}
+
+#* Multiply two numbers
+#* @param x First number
+#* @param y Second number
+#* @post /multiply
+function(x, y) {
+  x <- as.numeric(x)
+  y <- as.numeric(y)
+  return(list(result = x * y))
 }
